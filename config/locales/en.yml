@@ -1,0 +1,7 @@
+en:
+  disable_notifications: Disable email notications on changing issue status to
+  notify_on: Notify on additional issue changes
+  notify_hint: (Send email notifications if any other field in issue has been changed)
+  notifications: Notications
+  permission_admin_project_notifications: Admin mail notications
+  error_no_tracker: There's no tracker in this project
