@@ -1,5 +1,5 @@
 fr:
-  disable_notifications: 'Désactiver les notifications lors du passage au(x) statut(s) :'
+  disable_notifications: 'Désactiver les notifications au(x) statut(s) :'
   notify_on: Notifier les autres changements de la demande
   notify_hint: (Envoyer une notification mail si un champ autre que le statut a été modifié)
   notifications: Notifications
