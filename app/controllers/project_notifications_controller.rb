@@ -8,10 +8,10 @@ class ProjectNotificationsController < ApplicationController
     end
   end
 
-
    def update
-     if params[:silent_statuses] && params[:project]
+     if params[:project]
        @project_id=Project.find_by_identifier(params[:project])
+
        ProjectSilent.replace_statuses(@project_id,params[:silent_statuses])
        flash[:notice] = l(:notice_successful_update)
      end

@@ -1,26 +1,28 @@
 <%if !@project.trackers.empty? %>
 <p>  <%= l(:label_tracker) %> : <%= select_tag "tracker_id", options_from_collection_for_select(@project.trackers.collect, "id", "name"), {:required => true, :onchange => "refresh_trackers(this);"} %><p>
 <h3><%= l(:disable_notifications) %></h3>
-<% @project.trackers.each do |tracker| %>
-<%= form_for @project,
-             :url => { :action => 'update', :project => @project },
-             :html => { :method => :post} do |f| %>
+
+<%= form_tag project_notifications_path(:project => @project,:action => 'update'), :method => :post  do%>
+
+  <% @project.trackers.each do |tracker| %>
 
   <div class="box tabular tracker" id='tracker_<%= tracker.id %>'>
      <% tracker.issue_statuses.sort_by {|k| k['position']}.each do |option| %>
       <p><%= check_box_tag "silent_statuses[#{tracker.id}][]", option.id, @silent_statuses.include?([tracker.id,option.id]), class: '' %>
         <%= option.name %>
-          </p>
+      </p>
       <% end %>
-      <%= f.submit l(:button_save), class: 'button'%>
-    <% end %>
   </div>
-  <%end %>
-  <% end%>
+    <% end %>
+
+  <%= submit_tag l(:button_save), class: 'button' %>
+  <% end %>
+
+<% end%>
 <script>
 function refresh_trackers(tracker) {
-$('.tracker').hide();
-$('#tracker_' + tracker.value).show();
+  $('.tracker').hide();
+  $('#tracker_' + tracker.value).show();
 }
 $('#tracker_id').change();
 </script>
